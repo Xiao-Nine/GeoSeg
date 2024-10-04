@@ -19,7 +19,7 @@ classes = CLASSES
 
 weights_name = "unetformer-r18-512crop-ms-epoch30-rep"
 weights_path = "model_weights/loveda/{}".format(weights_name)
-test_weights_name = "last"
+test_weights_name = "unetformer-r18-512crop-ms-epoch30-rep-v2"
 log_name = 'loveda/{}'.format(weights_name)
 monitor = 'val_mIoU'
 monitor_mode = 'max'
@@ -27,7 +27,7 @@ save_top_k = 1
 save_last = True
 check_val_every_n_epoch = 1
 pretrained_ckpt_path = None # the path for the pretrained model weight
-gpus = [2]  # default or gpu ids:[0] or gpu nums: 2, more setting can refer to pytorch_lightning
+gpus = [3]  # default or gpu ids:[0] or gpu nums: 2, more setting can refer to pytorch_lightning
 resume_ckpt_path = None  # whether continue training with the checkpoint, default None
 
 #  define the network

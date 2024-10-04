@@ -1,5 +1,5 @@
 import pytorch_lightning as pl
-from pytorch_lightning.callbacks import ModelCheckpoint
+from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
 from tools.cfg import py2cfg
 import os
 import torch
@@ -165,7 +165,12 @@ def main():
     args = get_args()
     config = py2cfg(args.config_path)
     seed_everything(42)
-
+    early_stop_callback = EarlyStopping(
+        monitor=config.monitor,
+        min_delta=0.00001,
+        patience=3,
+        mode='max'
+    )
     checkpoint_callback = ModelCheckpoint(save_top_k=config.save_top_k, monitor=config.monitor,
                                           save_last=config.save_last, mode=config.monitor_mode,
                                           dirpath=config.weights_path,
